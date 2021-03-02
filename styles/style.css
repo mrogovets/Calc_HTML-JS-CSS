@@ -56,10 +56,13 @@ body {
   line-height: 52px;
   align-items: center;
   color: #373a37;
-  opacity: 0.08;
+  /* opacity: 0.08; */
+  background: linear-gradient(92.94deg, #cad4c5 0%, #b2bfa5 100%);
   background-image: url(/svg/8888888888.svg);
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position: center;
+  outline: none;
+  border: none;
 }
 
 .button-fields {
