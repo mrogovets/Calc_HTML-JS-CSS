@@ -25,3 +25,5 @@ const btnEquel = document.querySelector(".btn-equel");
 let inputTable = inputDigital.value;
 
 btnAC.addEventListener("click", () => console.log(inputDigital.value));
+
+console.log("Hello world");
