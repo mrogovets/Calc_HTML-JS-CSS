@@ -25,6 +25,7 @@ const btnEquel = document.querySelector(".btn-equel");
 let RESULT = null;
 let preRESULT = 0;
 let operation = null;
+inputDigital.value = "0";
 
 let add = (a, b) => {
   if (a === null) {
