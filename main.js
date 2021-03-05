@@ -192,24 +192,9 @@ btnPlus.addEventListener("click", () => {
   if (operation === operation) {
     operand1Stop = true;
   } else {
+    console.log("!operation");
     operand1Stop = false;
     operand2 = null;
-    switch (prevOperation) {
-      case "minus":
-        RESULT = minus(operand1, operand2);
-        operand1 = Number(RESULT);
-        inputDigital.value = RESULT;
-        operand2 = null;
-        operation = null;
-        break;
-      case "sum":
-        RESULT = sum(operand1, operand2);
-        operand1 = Number(RESULT);
-        inputDigital.value = RESULT;
-        operand2 = null;
-        operation = null;
-        break;
-    }
   }
   if (operand1 && operand2) {
     inputDigital.value = "";
@@ -229,22 +214,6 @@ btnMinus.addEventListener("click", () => {
   } else {
     operand1Stop = false;
     operand2 = null;
-    switch (prevOperation) {
-      case "minus":
-        RESULT = minus(operand1, operand2);
-        operand1 = Number(RESULT);
-        inputDigital.value = RESULT;
-        operand2 = null;
-        operation = null;
-        break;
-      case "sum":
-        RESULT = sum(operand1, operand2);
-        operand1 = Number(RESULT);
-        inputDigital.value = RESULT;
-        operand2 = null;
-        operation = null;
-        break;
-    }
   }
   if (operand1 && operand2) {
     inputDigital.value = "";
