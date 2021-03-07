@@ -83,7 +83,7 @@ const setData = (btnNumber) => {
 btnAC.addEventListener("click", () => {
   RESULT = 0;
   operand1 = operand2 = null;
-  operation = null;
+  prevOperation = operation = null;
   inputDigital.value = RESULT;
 });
 
@@ -327,19 +327,30 @@ btnMinus.addEventListener("click", () => {
 
 btnEquel.addEventListener("click", () => {
   switch (operation) {
-    case "add":
-      RESULT = add(preRESULT, +inputDigital.value);
+    case "sum":
+      if (operand1 && operand2) {
+        inputDigital.value = "";
+        RESULT = sum(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+      }
       break;
-    case "mult":
-      RESULT = mult(preRESULT, +inputDigital.value);
-      break;
-    case "divide":
-      RESULT = divide(preRESULT, +inputDigital.value);
     case "minus":
-      RESULT = minus(preRESULT, +inputDigital.value);
+      if (operand1 && operand2) {
+        inputDigital.value = "";
+        RESULT = minus(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+      }
+      break;
   }
   inputDigital.value = RESULT;
   console.log(RESULT);
-  preRESULT = null;
   RESULT = null;
 });
