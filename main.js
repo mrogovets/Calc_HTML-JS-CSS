@@ -24,7 +24,7 @@ const btnEquel = document.querySelector(".btn-equel");
 
 let RESULT = null;
 let operation = null;
-let prevOperation = "sum";
+let prevOperation = null;
 let operand1 = null;
 let operand2 = null;
 let operand1Stop = false;
@@ -37,13 +37,8 @@ let sum = (a, b) => {
 };
 
 let mult = (a, b) => {
-  if (a === null) {
-    a = 1;
-  }
-  if (b === null) {
-    b = 1;
-  }
-  operation = "mult";
+  a = Number(a);
+  b = Number(b);
   return a * b;
 };
 
@@ -54,13 +49,8 @@ let minus = (a, b) => {
 };
 
 let divide = (a, b) => {
-  if (a === null) {
-    a = 1;
-  }
-  if (b === null) {
-    b = 1;
-  }
-  operation = "divide";
+  a = Number(a);
+  b = Number(b);
   return a / b;
 };
 
@@ -71,14 +61,13 @@ const setData = (btnNumber) => {
     console.log("operand1Stop", operand1Stop);
   } else {
     if (!operand1Stop && !operand2) {
-      operand1 = inputDigital.value;
+      operand1 = Number(RESULT);
       console.log("operand1", operand1, "operand2", operand2);
       console.log("operand1Stop", operand1Stop);
     }
     if (operation) {
       if (!operand2) {
         console.log("operand2 empty");
-        inputDigital.value = 0;
         inputDigital.value = btnNumber;
         operand2 = inputDigital.value;
         console.log("operand2", operand2);
@@ -102,6 +91,11 @@ btn1.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "1";
   const btnNumber = 1;
   setData(btnNumber);
@@ -111,6 +105,11 @@ btn2.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "2";
   const btnNumber = 2;
   setData(btnNumber);
@@ -120,6 +119,11 @@ btn3.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "3";
   const btnNumber = 3;
   setData(btnNumber);
@@ -129,6 +133,11 @@ btn4.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "4";
   const btnNumber = 4;
   setData(btnNumber);
@@ -138,6 +147,11 @@ btn5.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "5";
   const btnNumber = 5;
   setData(btnNumber);
@@ -147,6 +161,11 @@ btn6.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "6";
   const btnNumber = 6;
   setData(btnNumber);
@@ -156,6 +175,11 @@ btn7.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "7";
   const btnNumber = 7;
   setData(btnNumber);
@@ -165,6 +189,11 @@ btn8.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "8";
   const btnNumber = 8;
   setData(btnNumber);
@@ -174,6 +203,11 @@ btn9.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "9";
   const btnNumber = 9;
   setData(btnNumber);
@@ -183,48 +217,112 @@ btn0.addEventListener("click", () => {
   if (inputDigital.value === "0") {
     inputDigital.value = "";
   }
+
+  if (operand1 && !operand2) {
+    inputDigital.value = "";
+  }
+
   inputDigital.value = inputDigital.value + "0";
   const btnNumber = 0;
   setData(btnNumber);
 });
 //-----------------------------
 btnPlus.addEventListener("click", () => {
-  if (operation === operation) {
+  operation = "sum";
+  if (!prevOperation) {
+    prevOperation = operation;
+  }
+  if (operation === prevOperation) {
     operand1Stop = true;
+    if (operand1 && operand2) {
+      inputDigital.value = "";
+      RESULT = sum(operand1, operand2);
+      operand1 = Number(RESULT);
+      inputDigital.value = RESULT;
+      operand2 = null;
+      // operation = null;
+      console.log("RESULT", RESULT);
+    }
   } else {
-    console.log("!operation");
+    console.log("!operation", prevOperation);
+    console.log("operand1", operand1);
+    console.log("operand2", operand2);
+    //--------------
+    switch (prevOperation) {
+      case "sum":
+        inputDigital.value = "";
+        RESULT = sum(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+      case "minus":
+        inputDigital.value = "";
+        RESULT = minus(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+    }
+    //--------------
+    prevOperation = operation;
     operand1Stop = false;
     operand2 = null;
   }
-  if (operand1 && operand2) {
-    inputDigital.value = "";
-    RESULT = sum(operand1, operand2);
-    operand1 = Number(RESULT);
-    inputDigital.value = RESULT;
-    operand2 = null;
-    operation = null;
-    console.log(RESULT);
-  }
-  operation = "sum";
+  console.log("operand1", operand1);
+  console.log("operand2", operand2);
 });
 
 btnMinus.addEventListener("click", () => {
-  if (operation === operation) {
+  operation = "minus";
+  if (!prevOperation) {
+    prevOperation = operation;
+  }
+  if (operation === prevOperation) {
     operand1Stop = true;
+    if (operand1 && operand2) {
+      inputDigital.value = "";
+      RESULT = minus(operand1, operand2);
+      operand1 = Number(RESULT);
+      inputDigital.value = RESULT;
+      operand2 = null;
+      // operation = null;
+      console.log("RESULT", RESULT);
+    }
   } else {
+    console.log("!operation", prevOperation);
+    console.log("operand1", operand1);
+    console.log("operand2", operand2);
+    //--------------
+    switch (prevOperation) {
+      case "sum":
+        inputDigital.value = "";
+        RESULT = sum(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+      case "minus":
+        inputDigital.value = "";
+        RESULT = minus(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+    }
+    //--------------
+    prevOperation = operation;
     operand1Stop = false;
     operand2 = null;
   }
-  if (operand1 && operand2) {
-    inputDigital.value = "";
-    RESULT = minus(operand1, operand2);
-    operand1 = Number(RESULT);
-    inputDigital.value = RESULT;
-    operand2 = null;
-    operation = null;
-    console.log(RESULT);
-  }
-  operation = "minus";
 });
 
 btnEquel.addEventListener("click", () => {
