@@ -267,6 +267,15 @@ btnPlus.addEventListener("click", () => {
         // operation = null;
         console.log("RESULT", RESULT);
         break;
+      case "mult":
+        inputDigital.value = "";
+        RESULT = mult(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
     }
     //--------------
     prevOperation = operation;
@@ -317,12 +326,82 @@ btnMinus.addEventListener("click", () => {
         // operation = null;
         console.log("RESULT", RESULT);
         break;
+      case "mult":
+        inputDigital.value = "";
+        RESULT = mult(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
     }
     //--------------
     prevOperation = operation;
     operand1Stop = false;
     operand2 = null;
   }
+  console.log("operand1", operand1);
+  console.log("operand2", operand2);
+});
+
+btnMult.addEventListener("click", () => {
+  operation = "mult";
+  if (!prevOperation) {
+    prevOperation = operation;
+  }
+  if (operation === prevOperation) {
+    operand1Stop = true;
+    if (operand1 && operand2) {
+      inputDigital.value = "";
+      RESULT = mult(operand1, operand2);
+      operand1 = Number(RESULT);
+      inputDigital.value = RESULT;
+      operand2 = null;
+      // operation = null;
+      console.log("RESULT", RESULT);
+    }
+  } else {
+    console.log("!operation", prevOperation);
+    console.log("operand1", operand1);
+    console.log("operand2", operand2);
+    //--------------
+    switch (prevOperation) {
+      case "sum":
+        inputDigital.value = "";
+        RESULT = sum(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+      case "minus":
+        inputDigital.value = "";
+        RESULT = minus(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+      case "mult":
+        inputDigital.value = "";
+        RESULT = mult(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+        break;
+    }
+    //--------------
+    prevOperation = operation;
+    operand1Stop = false;
+    operand2 = null;
+  }
+  console.log("operand1", operand1);
+  console.log("operand2", operand2);
 });
 
 btnEquel.addEventListener("click", () => {
@@ -342,6 +421,17 @@ btnEquel.addEventListener("click", () => {
       if (operand1 && operand2) {
         inputDigital.value = "";
         RESULT = minus(operand1, operand2);
+        operand1 = Number(RESULT);
+        inputDigital.value = RESULT;
+        operand2 = null;
+        // operation = null;
+        console.log("RESULT", RESULT);
+      }
+      break;
+    case "mult":
+      if (operand1 && operand2) {
+        inputDigital.value = "";
+        RESULT = mult(operand1, operand2);
         operand1 = Number(RESULT);
         inputDigital.value = RESULT;
         operand2 = null;
